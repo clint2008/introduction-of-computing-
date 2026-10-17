@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clint Jay B. Rodimo | Portfolio</title>
+
+    <style>
+        /* GENERAL SETTINGS */
+        :root {
+            --bg: #080b16;
+            --card: #11172a;
+            --blue: #00e5ff;
+            --purple: #a855f7;
+            --white: #f4f7ff;
+            --gray: #a5aec7;
+            --border: #27314d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section {
+            padding: 80px 0;
+            scroll-margin-top: 75px;
+        }
+
+        .alternate {
+            background: #0c1020;
+        }
+
+        .eyebrow {
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            color: var(--blue);
+        }
+
+        .section-description {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        /* NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 11, 22, 0.97);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            padding: 5px 12px;
+            color: var(--blue);
+            background: transparent;
+            border: 1px solid var(--blue);
+            border-radius: 5px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* HOME */
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(
+                    circle at 80% 40%,
+                    rgba(168, 85, 247, 0.15),
+                    transparent 40%
+                );
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 5vw, 65px);
+            line-height: 1.2;
+            margin-bottom: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        .subtitle {
+            color: var(--purple);
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 18px;
+            border: 1px solid var(--blue);
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .primary {
+            background: var(--blue);
+            color: #071019;
+        }
+
+        .primary:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+        }
+
+        .secondary {
+            color: var(--blue);
+        }
+
+        .secondary:hover {
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        .player-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .player-info strong {
+            color: var(--purple);
+        }
+
+        .online {
+            color: #4dff9a;
+        }
+
+        /* GAMING PROFILE CARD */
+        .game-card {
+            max-width: 340px;
+            width: 100%;
+            margin: auto;
+            padding: 25px;
+            text-align: center;
+            background: linear-gradient(145deg, #18213a, var(--card));
+            border: 1px solid var(--purple);
+            border-radius: 15px;
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.15);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card-top,
+        .xp-label {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 10px;
+        }
+
+        .card-top {
+            color: var(--blue);
+            font-weight: bold;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            display: grid;
+            place-items: center;
+            margin: 25px auto;
+            border: 3px solid var(--blue);
+            border-radius: 50%;
+            color: var(--blue);
+            background: #091323;
+            font-size: 40px;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+        }
+
+        .card-role {
+            color: var(--purple);
+            font-size: 11px;
+            margin: 5px 0 25px;
+        }
+
+        .xp-label {
+            color: var(--gray);
+        }
+
+        .xp-bar {
+            height: 8px;
+            background: #29304a;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .xp-progress {
+            width: 65%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+        }
+
+        .card-footer {
+            color: #4dff9a;
+            font-size: 11px;
+            margin-top: 25px;
+        }
+
+        /* ABOUT */
+        .about-card {
+            padding: 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .about-card h3 {
+            color: var(--purple);
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--gray);
+            margin-bottom: 14px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-box {
+            padding: 18px 8px;
+            background: #18213a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            color: var(--blue);
+            font-size: 27px;
+        }
+
+        .stat-box p {
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover,
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blue);
+            box-shadow: 0 0 18px rgba(0, 229, 255, 0.08);
+        }
+
+        .skill-icon {
+            color: var(--blue);
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill-card p {
+            color: var(--gray);
+            font-size: 13px;
+            min-height: 65px;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 3px 8px;
+            border: 1px solid var(--purple);
+            border-radius: 4px;
+            color: var(--purple);
+            font-size: 10px;
+        }
+
+        /* PROJECTS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            padding: 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .project-number {
+            color: var(--purple);
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .project-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            margin: 18px 0;
+            border: 1px solid var(--blue);
+            border-radius: 8px;
+            color: var(--blue);
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 18px;
+        }
+
+        .project-tags span {
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(0, 229, 255, 0.08);
+            color: var(--blue);
+            font-size: 10px;
+        }
+
+        .project-note {
+            margin-top: 18px;
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        /* EDUCATION */
+        .education-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 28px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--purple);
+            border-radius: 10px;
+        }
+
+        .education-marker {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            color: var(--purple);
+            border: 1px solid var(--purple);
+            border-radius: 8px;
+        }
+
+        .education-status {
+            color: #4dff9a;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .education-card h3 {
+            margin: 8px 0;
+        }
+
+        .school-name {
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+
+        .education-detail {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* CONTACT */
+        .contact-card {
+            max-width: 650px;
+            padding: 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .contact-card h3 {
+            color: var(--purple);
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card > p {
+            color: var(--gray);
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #090e1c;
+            color: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font: inherit;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-status {
+            color: var(--blue);
+            margin-top: 12px;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 25px 0;
+            background: #050711;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-content p,
+        .footer-content a {
+            color: var(--gray);
+            font-size: 11px;
+        }
+
+        .footer-content a:hover {
+            color: var(--blue);
+        }
+
+        /* TABLET */
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            .hero-visual {
+                width: 100%;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 650px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                position: relative;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                padding: 12px;
+                background: #0c1020;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card,
+            .contact-card,
+            .education-card {
+                padding: 20px;
+            }
+
+            .stats {
+                gap: 8px;
+            }
+
+            .stat-box p {
+                font-size: 11px;
+            }
+
+            .education-card {
+                gap: 12px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="navbar container">
+            <a href="#home" class="logo">CLINT<span>.DEV</span></a>
+
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HOME -->
+        <section id="home" class="section hero">
+            <div class="container hero-content">
+
+                <div>
+                    <p class="eyebrow">WELCOME TO MY DIGITAL WORLD</p>
+
+                    <h1>
+                        PLAYER ONE:<br>
+                        <span>CLINT RODIMO</span>
+                    </h1>
+
+                    <h2 class="subtitle">
+                        Future Programmer <span class="cursor">_</span>
+                    </h2>
+
+                    <p class="description">
+                        I am a first-year BSIT student learning to turn
+                        ideas into creative digital experiences through
+                        programming and web development.
+                    </p>
+
+                    <div class="buttons">
+                        <a href="#projects" class="btn primary">
+                            Explore My Projects
+                        </a>
+
+                        <a href="#about" class="btn secondary">
+                            About Me
+                        </a>
+                    </div>
+
+                    <div class="player-info">
+                        <p><strong>COURSE:</strong> BSIT-1R14</p>
+                        <p><strong>LEVEL:</strong> FIRST YEAR</p>
+                        <p><strong>STATUS:</strong>
+                            <span class="online">ONLINE</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="card-top">
+                        <span>PLAYER PROFILE</span>
+                        <span>LV. 01</span>
+                    </div>
+
+                    <div class="avatar">&lt;/&gt;</div>
+
+                    <h2>CLINT RODIMO</h2>
+                    <p class="card-role">ASPIRING IT PROFESSIONAL</p>
+
+                    <div class="xp-label">
+                        <span>EXPERIENCE POINTS</span>
+                        <span>LOADING...</span>
+                    </div>
+
+                    <div class="xp-bar">
+                        <div class="xp-progress"></div>
+                    </div>
+
+                    <p class="card-footer">
+                        QUEST: MASTER PROGRAMMING
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT ME -->
+        <section id="about" class="section">
+            <div class="container">
+                <p class="eyebrow">01 / PLAYER INFORMATION</p>
+                <h2 class="section-title">About <span>Me</span></h2>
+
+                <div class="about-card">
+                    <h3>Hello, I'm Clint!</h3>
+
+                    <p>
+                        I am Clint Jay B. Rodimo, a first-year Bachelor
+                        of Science in Information Technology student
+                        from section BSIT-1R14.
+                    </p>
+
+                    <p>
+                        I am beginning my journey in information
+                        technology. I am interested in 
